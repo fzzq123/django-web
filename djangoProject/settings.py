@@ -20,15 +20,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "#"
+SECRET_KEY = "！"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['#', '#', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['！']
 
 # ==================== 部署安全配置（端口替换为你自己的） ====================
-ALLOWED_ORIGINS = ['*']
+ALLOWED_ORIGINS = ['！']
 CSRF_TRUSTED_ORIGINS = ALLOWED_ORIGINS.copy()
 CSRF_COOKIE_SECURE = False
 
@@ -140,10 +140,10 @@ MEDIA_URL = '/media/'
 # ==================== 邮件发送配置 ====================
 EMAIL_HOST = 'smtp.qq.com'
 EMAIL_PORT = 25
-EMAIL_HOST_USER = '#'
-EMAIL_HOST_PASSWORD = '#'         # 授权码（需替换为实际授权码）
+EMAIL_HOST_USER = '！'
+EMAIL_HOST_PASSWORD = '！'         # 授权码（需替换为实际授权码）
 EMAIL_USE_TLS = True
-EMAIL_FROM = '#'
+EMAIL_FROM = '！'
 
 # ==================== Django Simple Captcha 配置 ====================
 CAPTCHA_FONT_SIZE = 30

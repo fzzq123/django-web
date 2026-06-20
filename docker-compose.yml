@@ -16,8 +16,7 @@ services:
     restart: always      
     image: nginx:latest
     ports:
-            #- 8000:80
-      - 9207:80
+      - !:?
     volumes:
       - ./config/nginx:/etc/nginx/conf.d
       - static_volume:/opt/services/djangoapp/src/static  # <-- bind the static volume
