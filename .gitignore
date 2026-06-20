@@ -1,13 +1,23 @@
 # VS编辑器配置
 .vscode/
 *.code-workspace
+
 # 数据库文件
 *.sqlite3
+*.sqlite3-journal
 *.db
-# Python缓存
-__pycache__/
+
+# Python缓存（**匹配任意子文件夹，彻底拦截）
+**/__pycache__/
 *.pyc
 *.pyo
-# 日志、本地环境文件
+*.pyd
+
+# 日志、本地环境隐私文件
 .env
+.env.*
 logs/
+*.log
+
+venv/
+__pycache__/
