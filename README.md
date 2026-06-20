@@ -78,6 +78,59 @@ EXPOSE !
 CMD ["gunicorn", "--chdir", "djangoProject", "--bind", "0.0.0.0:！", "djangoProject.wsgi:application", "--reload"]
 ```
 
+### 实现步骤(可能有误)
+#### 安装依赖
+```bash
+pip install -r requirements.txt
+```
+
+#### 创建超级管理员
+```bash
+python manage.py createsuperuser
+```
+
+#### 数据库迁移
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
+#### 运行
+```bash
+python manage.py runserver
+```
+
+#### 运行后检查无误
+#### 更新依赖
+```bash
+pip freeze > requirements.txt
+```
+#### 静态文件收集
+```bash
+python manage.py collectstatic
+```
+
+#### 将项目文件压缩成压缩包并上传到要部署的服务器(以本地Windows操作系统，Docker平台Linux操作系统为例)
+```bash
+scp 本地文件路径 用户名@服务器IP:远程存放目录
+
+例：本地文件：D:/test/project.zip，传到服务器 /home/upload/ 目录
+scp D:/test/project.zip root@5.13.123.23:/home/upload/
+
+若服务器带端口
+scp -P 2222 D:/test/project.zip root@5.13.123.23:/home/upload/
+```
+
+#### 进行部署
+```bash
+检查是否报错
+docker compose up
+
+后台运行
+docker compose up -d
+```
+
+
 ### 已实现功能
 - 可以编辑产品的标题、描述、价格、发布时间、浏览量统计，可以展示产品图片，可以分页
 - 可以使用Froala(免费版，无法上传图片只能使用文字相关功能)发布新闻/文章
