@@ -20,15 +20,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-krhxb&&hfm=@vtlhkr&xnkrwgcn$!7*f6t&i=y5h5lhsv8rrd+"
+SECRET_KEY = "#"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['8.161.226.168', '8.130.51.93', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['#', '#', 'localhost', '127.0.0.1']
 
 # ==================== 部署安全配置（端口替换为你自己的） ====================
-ALLOWED_ORIGINS = ['http://8.161.226.168:9207', 'http://8.130.51.93:9207']
+ALLOWED_ORIGINS = ['*']
 CSRF_TRUSTED_ORIGINS = ALLOWED_ORIGINS.copy()
 CSRF_COOKIE_SECURE = False
 
@@ -143,7 +143,7 @@ EMAIL_PORT = 25
 EMAIL_HOST_USER = '#'
 EMAIL_HOST_PASSWORD = '#'         # 授权码（需替换为实际授权码）
 EMAIL_USE_TLS = True
-EMAIL_FROM = '2407373665@qq.com'
+EMAIL_FROM = '#'
 
 # ==================== Django Simple Captcha 配置 ====================
 CAPTCHA_FONT_SIZE = 30
