@@ -1,0 +1,64 @@
+/* ==================== 新闻模块样式 ==================== */
+.model-details-title {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px 0;
+    border-bottom: 2px solid #ddd;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+.model-details-title-search {
+    float: right;
+    margin-top: -4px;
+}
+.model-details {
+    margin-bottom: 30px;
+}
+.news-model {
+    padding: 12px 0;
+    border-bottom: 1px dashed #e0e0e0;
+    overflow: hidden;
+}
+.news-model img {
+    float: left;
+    margin-right: 8px;
+    margin-top: 2px;
+}
+.news-model b {
+    font-size: 15px;
+    color: #333;
+}
+.news-model a {
+    text-decoration: none;
+}
+.news-model a:hover b {
+    color: #0066cc;
+}
+.news-model span {
+    color: #999;
+    font-size: 13px;
+    margin-left: 8px;
+}
+.news-model p {
+    color: #777;
+    font-size: 13px;
+    margin: 8px 0 0 32px;
+    line-height: 1.5;
+}
+.news-search-model {
+    color: #666 !important;
+}
+.news-search-model em {
+    color: #e4393c;
+    font-style: normal;
+    font-weight: bold;
+}
+/* 新闻详情富文本内容 */
+.news-content img {
+    max-width: 100%;
+    height: auto;
+}
+.news-content p {
+    line-height: 1.8;
+    margin-bottom: 12px;
+}

@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}计算器{% endblock %}
+
+{% block extra_css %}
+<style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .mt-5 {
+            margin-top: 3rem;
+        }
+        .card {
+            border: 1px solid rgba(0,0,0,.125);
+            border-radius: 0.25rem;
+            background: #fff;
+        }
+        .p-3 {
+            padding: 1rem;
+        }
+        .form-control {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+        }
+        .mb-3 {
+            margin-bottom: 1rem;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .col-3 {
+            flex: 1 1 23%;
+            max-width: 23%;
+        }
+        .col-6 {
+            flex: 1 1 48%;
+            max-width: 48%;
+        }
+        .btn {
+            display: inline-block;
+            font-weight: 400;
+            text-align: center;
+            vertical-align: middle;
+            user-select: none;
+            border: 1px solid transparent;
+            padding: 0.375rem 0.75rem;
+            font-size: 1.2rem;
+            line-height: 1.5;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            width: 100%;
+            height: 60px;
+        }
+        .btn-secondary {
+            color: #fff;
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+        .btn-danger {
+            color: #fff;
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+        .btn-light {
+            color: #212529;
+            background-color: #f8f9fa;
+            border-color: #f8f9fa;
+        }
+        .btn-success {
+            color: #fff;
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .calculator {
+            max-width: 400px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+        #result {
+            height: 80px;
+            font-size: 2rem;
+            text-align: right;
+        }
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            margin: -1px;
+            padding: 0;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        /* 核心布局：左右图片 + 中间计算器，一行居中 */
+        .wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin-top: 50px;
+            flex-wrap: nowrap;
+        }
+        .side-img {
+            width: 220px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.15);
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+        <h1 class="text-center mt-5">在线Web计算器</h1>
+
+        <!-- 左右图片 + 中间计算器 -->
+        <div class="wrapper">
+            <!-- 左侧图片 -->
+            <img src="/media/images/whatthedogdoing.jpg" class="side-img" alt="我的刀盾">
+
+            <!-- 中间计算器 -->
+            <div class="card calculator p-3">
+                <label for="result" class="form-label visually-hidden">计算结果</label>
+                <input type="text" id="result" class="form-control mb-3" readonly>
+                <div class="row">
+                    <div class="col-3"><button class="btn btn-secondary" onclick="appendValue('C')">C</button></div>
+                    <div class="col-3"><button class="btn btn-secondary" onclick="appendValue('←')">←</button></div>
+                    <div class="col-3"><button class="btn btn-secondary" onclick="appendValue('%')">%</button></div>
+                    <div class="col-3"><button class="btn btn-danger" onclick="appendValue('/')">÷</button></div>
+
+                    <div class="col-3"><button class="btn btn-light" onclick="appendValue('7')">7</button></div>
+                    <div class="col-3"><button class="btn btn-light" onclick="appendValue('8')">8</button></div>
+                    <div class="col-3"><button class="btn btn-light" onclick="appendValue('9')">9</button></div>
+                    <div class="col-3"><button class="btn btn-danger" onclick="appendValue('*')">×</button></div>
+
+                    <div class="col-3"><button class="btn btn-light" onclick="appendValue('4')">4</button></div>
+                    <div class="col-3"><button class="btn btn-light" onclick="appendValue('5')">5</button></div>
+                    <div class="col-3"><button class="btn btn-light" onclick="appendValue('6')">6</button></div>
+                    <div class="col-3"><button class="btn btn-danger" onclick="appendValue('-')">-</button></div>
+
+                    <div class="col-3"><button class="btn btn-light" onclick="appendValue('1')">1</button></div>
+                    <div class="col-3"><button class="btn btn-light" onclick="appendValue('2')">2</button></div>
+                    <div class="col-3"><button class="btn btn-light" onclick="appendValue('3')">3</button></div>
+                    <div class="col-3"><button class="btn btn-danger" onclick="appendValue('+')">+</button></div>
+
+                    <div class="col-6"><button class="btn btn-light" onclick="appendValue('0')">0</button></div>
+                    <div class="col-3"><button class="btn btn-light" onclick="appendValue('.')">.</button></div>
+                    <div class="col-3"><button class="btn btn-success" onclick="calculateResult()">=</button></div>
+                </div>
+            </div>
+
+            <!-- 右侧图片 -->
+            <img src="/media/images/whatthedogdoing.jpg" class="side-img" alt="我的刀盾">
+        </div>
+    </div>
+
+    <script>
+        const result = document.getElementById('result');
+
+        function appendValue(value) {
+            if (value === 'C') { result.value = ''; return; }
+            if (value === '←') { result.value = result.value.slice(0, -1); return; }
+            result.value += value;
+        }
+
+        function calculateResult() {
+            try {
+                let expression = result.value.replace('×', '*').replace('÷', '/');
+                result.value = eval(expression);
+            } catch (error) {
+                result.value = '错误';
+            }
+        }
+
+        // 键盘支持
+        document.addEventListener('keydown', function (e) {
+            const key = e.key;
+            if ('0123456789'.includes(key)) appendValue(key);
+            if (key === '+' || key === '-' || key === '*' || key === '/' || key === '.') appendValue(key);
+            if (key === 'Enter') calculateResult();
+            if (key === 'Backspace') appendValue('←');
+            if (key === 'Escape') appendValue('C');
+        });
+    </script>
+{% endblock %}

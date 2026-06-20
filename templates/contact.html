@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+人才招聘
+{% endblock %}
+{% block content %}
+    <br><br>
+<link href="{% static 'css/contact.css' %}" rel="stylesheet">
+<!--引用百度地图样式-->
+<style type="text/css">
+    .iw_poi_title {
+        color: #CC5522;
+        font-size: 14px;
+        font-weight: bold;
+        overflow: hidden;
+        padding-right: 13px;
+        white-space: nowrap
+    }
+    .iw_poi_content {
+        font: 12px arial, sans-serif;
+        overflow: visible;
+        padding-top: 4px;
+        white-space: -moz-pre-wrap;
+        word-wrap: break-word
+    }
+</style>
+<script type="text/javascript" src="https://api.map.baidu.com/api?v=1.0&&type=webgl&ak=RcNWx4WhvzI5gNBkem1NPcC99ezJNBRB">
+</script>
+</script>
+<!-- 广告横幅 -->
+<div class="container-fluid">
+    <div class="row">
+        <img class="img-responsive model-img" src="/media/img/contact.jpg">
+    </div>
+</div>
+<!-- 主体内容 -->
+<div class="container">
+    <div class="row row-3">
+        <!-- 侧边导航栏 -->
+        <div class="col-md-3">
+            <div class="model-title">
+                人才招聘
+            </div>
+            <div class="model-list">
+                <ul class="list-group">
+                    <li class="list-group-item" id="contact">
+                        <a href="{% url 'contact' %}">欢迎咨询</a>
+                    </li>
+                    <li class="list-group-item" id="recruit">
+                        <a href="{% url 'recruit' %}">加入恒达</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- 说明文字和图片 -->
+        <div class="col-md-9">
+            <div class="model-details-title">
+                欢迎咨询
+            </div>
+            <div class="col-md-4">
+                <div class="contact-left">
+                    <h1>
+                        <strong>恒达科技有限公司</strong>
+                        <span>HengDa Science and Technology</span>
+                    </h1>
+                    <ul>
+                        <li><span>业务质询一：</span>111-111111</li>
+                        <li><span>业务质询二：</span>222-222222</li>
+                        <li><span>咨询电话：</span>0111-1111111</li>
+                        <li><span>企业传真：</span>0222-2222222</li>
+                        <li><span>地址：</span>某某路某某大道某某号</li>
+                        <li><span>邮编：</span>2222-222222</li>
+                        <li><span>网址：</span>
+                            <a href="http://python3web.com">http://python3web.com</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-8" style="margin-top: 20px;">
+                <div id="container" style="width:500px;height:400px;border:#ccc solid 1px;" ></div>
+                <div id="result" style="display:none;margin-top:10px;padding:10px;background:#f5f5f5;border-radius:4px;font-size:14px;color:#333;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block script_end %}
+<script type="text/javascript">
+        //创建地图函数：
+        function createMap(){
+            var map = new BMapGL.Map("container");//在百度地图容器中创建一个地图
+            var point = new BMapGL.Point(110.347444, 21.269844);//定义一个中心点坐标
+            map.centerAndZoom(point, 13); //设定地图的中心点和坐标并将地图显示在地图容器中
+            map.enableScrollWheelZoom(true);
+            map.setHeading(64.5);   //设置地图旋转角度
+            map.setTilt(73);       //设置地图的倾斜角度
+
+            // 公交路线规划：湛江西站 → 岭南师范学院
+            var output = '从湛江西站到岭南师范学院：';
+            var transit = new BMapGL.TransitRoute(map, {
+                renderOptions: { map: map },
+                onSearchComplete: function (results) {
+                    if (transit.getStatus() != BMAP_STATUS_SUCCESS) {
+                        return;
+                    }
+                    var plan = results.getPlan(0);
+                    output += '总时长：' + plan.getDuration(true); //获取时间
+                    output += '，总路程：' + plan.getDistance(true); //获取距离
+                    document.getElementById('result').style.display = 'block';
+                    document.getElementById('result').innerHTML = output;
+                },
+            });
+            var start = new BMapGL.Point(110.281225, 21.2155);  // 湛江西站
+            var end = new BMapGL.Point(110.347444, 21.269844);   // 岭南师范学院
+            transit.search(start, end);
+        }
+      createMap();//创建和初始化地图
+    </script>
+{% endblock %}

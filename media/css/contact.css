@@ -1,0 +1,25 @@
+/* 人才招聘页面样式 */
+.contact-left h1 strong {
+    font-size: 24px;
+}
+.contact-left h1 span {
+    display: block;
+    font-size: 14px;
+    font-weight: normal;
+    color: #999;
+}
+.contact-left ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+.contact-left ul li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #ddd;
+    font-size: 14px;
+}
+.contact-left ul li span {
+    font-weight: bold;
+    display: inline-block;
+    width: 90px;
+}

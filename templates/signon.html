@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %}新增帐号{% endblock %}
+{% block content %}
+<div class="row" style="padding-top:100px;">
+    <div class="col-md-12">
+        <div class="portlet box blue">
+            <h3 class="page-title">新增帐号</h3>
+            <div class="portlet-body form">
+                <form enctype="multipart/form-data"
+                      class="form-horizontal form-bordered form-row-stripped"
+                      method="post">
+                    {% csrf_token %}
+                    <div class="form-body">
+                        <div class="form-group">
+                            <label class="control-label col-md-2">
+                                帐号(请不要用中文、空白及特殊符号&#@%)
+                            </label>
+                            <div class="col-md-10">
+                                {{ form.username }}
+                                <div id="m_acct"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">姓名</label>
+                            <div class="col-md-10">
+                                {{ form.accountname }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">密码</label>
+                            <div class="col-md-10">
+                                {{ form.password }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2">电邮信箱(用来重设密码)</label>
+                            <div class="col-md-10">
+                                {{ form.email }}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            {% if form.captcha.errors %}
+                            <div class="alert alert-warning">图形验证码不对！</div>
+                            {% endif %}
+                            <label class="control-label col-md-2">验证码</label>
+                            <div class="col-md-10">
+                                {{ form.captcha }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="submit" id="submit" name="submit"
+                                        class="btn blue">送出</button>
+                                <button type="button" name="retfun" class="btn red"
+                                        onclick="history.go(-1);">返回</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

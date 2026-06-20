@@ -1,0 +1,77 @@
+<!-- 广告横幅 -->
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid" style="margin-top: 20px; margin-bottom: 20px;">
+    <div class="row">
+        <img class="img-responsive" src="/media/Product/robot 1.webp" style="width: 100%; height: auto; max-height: 120px; object-fit: cover;">
+    </div>
+</div>
+
+<!-- 主体内容 -->
+<div class="container">
+    <div class="row" style="margin-top: 20px;">
+
+        <div class="col-xs-3 col-sm-3 col-md-3">
+            <h4 style="margin-bottom: 15px; font-weight: bold;">产品中心</h4>
+            <div style="font-size: 14px;">
+                <p style="margin: 0 0 8px 0;"><a href="{% url 'products' 'robot' %}">家用机器人</a></p>
+                <p style="margin: 0 0 8px 0;"><a href="{% url 'products' 'monitor' %}">智能监控</a></p>
+                <p style="margin: 0 0 8px 0;"><a href="{% url 'products' 'face' %}">人脸识别解决方案</a></p>
+            </div>
+        </div>
+
+        <div class="col-xs-9 col-sm-9 col-md-9">
+            <h4 style="margin-bottom: 20px; font-weight: bold;">{{ productName }}</h4>
+
+            <div style="font-size: 14px;">
+                {% for product in page_obj %}
+                <div style="margin-bottom: 20px; display: flex; align-items: center;">
+                    <div style="width: 30%; padding-right: 10px;">
+                        {% for img in product.productImgs.all %}
+                            {% if forloop.first %}
+                            <a href="{% url 'productDetail' product.id %}">
+                                <img src="{{ img.photo.url }}" style="width: 100%; height: auto; max-height: 120px; object-fit: cover;">
+                            </a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div style="width: 70%;">
+                        <h5 style="margin: 0 0 5px 0; font-size: 16px;">{{ product.title|truncatechars:20 }}</h5>
+                        <p style="margin: 0 0 5px 0; line-height: 1.4;">{{ product.description|truncatechars:80 }}</p>
+                        <p style="color: red; font-weight: bold; margin: 0 0 5px 0;">¥ {{ product.price }}</p>
+                        <p style="color: #666; font-size: 12px; margin: 0 0 8px 0;">浏览量：{{ product.views }}</p>
+                        <a href="{% url 'productDetail' product.id %}" class="btn btn-primary btn-xs">查看详情</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- 分页 -->
+            {% if page_obj.paginator.num_pages > 1 %}
+            <div style="text-align: center; margin-top: 20px; font-size: 12px;">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">首页</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">上一页</a>
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                    {% if num == page_obj.number %}
+                        <strong>{{ num }}</strong>
+                    {% else %}
+                        <a href="?page={{ num }}">{{ num }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">下一页</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">末页</a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

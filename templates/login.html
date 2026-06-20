@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}用户登录{% endblock %}
+{% block content %}
+<div class="container" style="padding-top:100px;max-width:400px;">
+    <form action="." class="login-form" method="post" autocomplete="off">
+        {% csrf_token %}
+        <h3 class="form-title" style="font-family:Microsoft JhengHei;font-size:25px;">
+            <b>XX 企业系统</b>
+        </h3>
+        <div>
+            <button class="close" data-close="alert"></button>
+            <h4>请输入帐号密码</h4>
+        </div>
+        <div class="form-group">
+            <label class="control-label visible-ie8 visible-ie9">帐号</label>
+            {{ form.username }}
+        </div>
+        <div class="form-group">
+            <label class="control-label visible-ie8 visible-ie9">密码</label>
+            {{ form.password }}
+        </div>
+        <div class="form-group">
+            {% if form.captcha.errors %}
+            <div class="alert alert-warning">图形验证码不对！</div>
+            {% endif %}
+            <label class="control-label visible-ie8 visible-ie9">验证码</label>
+            {{ form.captcha }}
+        </div>
+        <div class="form-group">
+            <button type="submit" id="submit" class="btn btn-success uppercase">登入</button>
+            <a href="/signon/" class="btn btn-success uppercase" style="margin-left:10px;">注册</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

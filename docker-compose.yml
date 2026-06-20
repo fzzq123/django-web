@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+
+  web:
+    restart: always      
+    build: .
+    volumes:
+      - .:/opt/services/djangoapp/src
+      - static_volume:/opt/services/djangoapp/src/static  # <-- bind the static volume
+      - media_volume:/opt/services/djangoapp/src/media  # <-- bind the media volume
+    networks:
+      - nginx_network
+
+  nginx:
+    restart: always      
+    image: nginx:latest
+    ports:
+            #- 8000:80
+      - 9207:80
+    volumes:
+      - ./config/nginx:/etc/nginx/conf.d
+      - static_volume:/opt/services/djangoapp/src/static  # <-- bind the static volume
+      - media_volume:/opt/services/djangoapp/src/media  # <-- bind the media volume
+    depends_on:
+      - web
+    networks:
+      - nginx_network
+
+networks:
+  nginx_network:
+    driver: bridge
+
+volumes:
+  static_volume:  # <-- declare the static volume
+  media_volume:  # <-- declare the media volume

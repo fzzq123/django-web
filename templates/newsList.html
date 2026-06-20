@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}{{ newName }}{% endblock %}
+{% block extra_css %}
+<link href="/media/css/news.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="row row-3">
+        <div class="model-details-title">
+            {{ newName }}
+            <div class="col-md-7 hidden-xs model-details-title-search">
+                <form method="get" action="{% url 'haystack_search' %}">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control"
+                               placeholder="请输入关键词" required />
+                        <span class="input-group-btn">
+                            <input type="submit" class="btn btn-default" value="查询" />
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="model-details">
+            {% for mynew in newList %}
+            <div class="news-model">
+                <a href="{% url 'newsDetail' mynew.id %}"><b>{{ mynew.title }}</b></a>
+                <span>【{{ mynew.publishDate|date:"Y-m-d" }}】</span>
+                <!-- 添加新闻简要说明（PyQuery 提取） -->
+                <p>{{ mynew.mytxt|truncatechars:"110" }}...</p>
+            </div>
+            {% empty %}
+            <p>暂无新闻</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

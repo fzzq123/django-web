@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}{{ mynew.title }}{% endblock %}
+{% block extra_css %}
+<link href="/media/css/news.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="row row-3">
+        <div class="model-details-title">
+            {{ mynew.title }}
+        </div>
+        <div class="model-details">
+            <p style="color:#999; font-size:14px;">
+                发布时间：{{ mynew.publishDate|date:"Y-m-d H:i" }} |
+                浏览量：{{ mynew.views }} |
+                分类：{{ mynew.newType }}
+            </p>
+            <hr>
+            <div class="news-content">
+                {{ mynew.description|safe }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE HTML>
+<!--
+	Hielo by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+        <title>{% block title %}Hielo by TEMPLATED{% endblock %}</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="/media/assets/css/main.css" />
+        {% block script_head %}{% endblock %}
+        {% block extra_css %}{% endblock %}
+	</head>
+	<body>
+
+		<!-- Header -->
+			<header id="header" class="alt">
+            <div class="logo"><a href="/">Hielo</a></div>
+				<a href="#menu">Menu</a>
+			</header>
+
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="/">Home</a></li>
+					<li><a href="/calcu/">在线计算器</a></li>
+					<li><a href="/dance/">dance</a></li>
+					<li><a href="/products/robot/">产品中心介绍</a></li>
+					<li><a href="/products/monitor/">智能监控介绍</a></li>
+					<li><a href="/products/face/">人脸识别介绍</a></li>
+					<li><a href="/search/">新闻搜索</a></li>
+					<li><a href="/contact/">联系我们</a></li>
+					<li><a href="/recruit/">加入我们</a></li>
+					<li><a href="/download/">资料下载</a></li>
+					<li><a href="/platform/">人脸识别</a></li>
+					<li><a href="/signon/">用户注册</a></li>
+					<li><a href="/login/">用户登录</a></li>
+				</ul>
+			</nav>
+
+        {% block content %}
+        {% endblock %}
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="container">
+					<ul class="icons">
+						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+					</ul>
+				</div>
+				<div class="copyright">
+					&copy; Untitled. All rights reserved.
+				</div>
+                <p><img src="/media/images/logo.png" height="50"></p>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="/media/assets/js/jquery.min.js"></script>
+		    <script src="/media/assets/js/jquery.scrollex.min.js"></script>
+		    <script src="/media/assets/js/skel.min.js"></script>
+		    <script src="/media/assets/js/util.js"></script>
+		    <script src="/media/assets/js/main.js"></script>
+
+            {% block script_end %}{% endblock %}
+
+            <style>
+                #header.alt {
+                    background: #000 !important;
+                    position: fixed !important;
+                    top:0 !important;
+                    width:100% !important;
+                }
+            </style>
+	</body>
+</html>
