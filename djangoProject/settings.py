@@ -140,8 +140,8 @@ MEDIA_URL = '/media/'
 # ==================== 邮件发送配置 ====================
 EMAIL_HOST = 'smtp.qq.com'
 EMAIL_PORT = 25
-EMAIL_HOST_USER = '2407373665@qq.com'
-EMAIL_HOST_PASSWORD = 'laimpfxbpavadhhg'         # 授权码（需替换为实际授权码）
+EMAIL_HOST_USER = '#'
+EMAIL_HOST_PASSWORD = '#'         # 授权码（需替换为实际授权码）
 EMAIL_USE_TLS = True
 EMAIL_FROM = '2407373665@qq.com'
 
