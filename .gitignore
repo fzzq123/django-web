@@ -1,0 +1,13 @@
+# VS编辑器配置
+.vscode/
+*.code-workspace
+# 数据库文件
+*.sqlite3
+*.db
+# Python缓存
+__pycache__/
+*.pyc
+*.pyo
+# 日志、本地环境文件
+.env
+logs/
