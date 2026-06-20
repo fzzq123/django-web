@@ -8,19 +8,26 @@ Django
 ## 部署
 Docker & docker-compose
 
-##运行方式
-###本地python运行
+## 运行方式
+
 1.安装依赖
-'''bash
+```bash
 pip install -r requirements.txt
+```
 
 2.迁移数据库
-python manage.py by makemigrations
-python manage.py by migrate
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
 
 3.启动服务
+```bash
 python manage.py runserver
+```
 
 4.部署
 (位于项目目录)
+```bash
 docker compose up -d
+```
